@@ -7,6 +7,8 @@ using System.Text.Json.Serialization;
 using WebApiAutores.Filtros;
 using WebApiAutores.Middlewares;
 using Microsoft.OpenApi.Models;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace WebApiAutores
 {
@@ -14,7 +16,10 @@ namespace WebApiAutores
     {
         public Startup(IConfiguration configuration) 
         {
+            JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration = configuration;
+            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -43,13 +48,13 @@ namespace WebApiAutores
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(Configuration["llavejwt"])),
-                    ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero                   
                 });
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIAutores", Version = "v1" });
-                c.AddSecurityDefinition("Beare", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
