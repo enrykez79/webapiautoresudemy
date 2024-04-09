@@ -52,7 +52,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**/*.csproj'
+    projects: $(proyecto)
     arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
     zipAfterPublish: true
     modifyOutputPath: true
