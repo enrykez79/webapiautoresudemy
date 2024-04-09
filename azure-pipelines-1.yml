@@ -54,8 +54,8 @@ steps:
     publishWebProjects: false
     projects: $(proyecto)
     arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
-    zipAfterPublish: true
-    modifyOutputPath: true
+    zipAfterPublish: false
+    modifyOutputPath: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publicando los artefactos'
