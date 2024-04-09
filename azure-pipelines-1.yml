@@ -16,13 +16,13 @@ variables:
 
 steps:
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-
 - task: CmdLine@2
   displayName: 'Adding package Microsoft.EntityFrameworkCore.Design'
   inputs:
    script: 'dotnet add package Microsoft.EntityFrameworkCore.Design'
+
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
 - task: CmdLine@2
   displayName: 'Installing EF Core CLI'
