@@ -38,8 +38,11 @@ namespace WebApiAutores
                 opciones.Conventions.Add(new SwaggerAgrupaPorVersion());
             }).AddJsonOptions(x => 
             x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles).AddNewtonsoftJson();
-            services.AddDbContext<ApplicationDbContext>(options => 
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+                
+                
+                
             
             //Tipos de servicios
             //AddTransient - Se nos va a dar una nueva instancia de la clase servicio A
@@ -127,7 +130,7 @@ namespace WebApiAutores
             {
                 opciones.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("https://www.apirequest.io").AllowAnyMethod().AllowAnyHeader()
+                    builder.WithOrigins("https://www.apirequest.io", "http://localhost:8645").AllowAnyMethod().AllowAnyHeader()
                     .WithExposedHeaders(new string[] { "cantidadTotalRegistros" });
                 });
             });
@@ -135,6 +138,8 @@ namespace WebApiAutores
             services.AddTransient<GeneradorEnlaces>();
             services.AddTransient<HATEOASAutorFilterAttribute>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+            services.AddApplicationInsightsTelemetry(Configuration["ApplicationInsights:ConnectionString"]);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger) 
