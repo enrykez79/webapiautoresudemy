@@ -16,6 +16,13 @@ variables:
 
 steps:
 
+- task: UseDotNet@2
+  displayName: 'Instalando ASP.NET 8'
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: false
+    version: '8.0.204'
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
