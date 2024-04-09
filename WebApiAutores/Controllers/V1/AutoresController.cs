@@ -107,7 +107,7 @@ namespace WebApiAutores.Controllers.V1
         }
 
         /// <summary>
-        /// Borra un autor
+        /// Borra un autor (saludos desde azure devops)
         /// </summary>
         /// <param name="id">Id del autor a borrar</param>
         /// <returns></returns>
