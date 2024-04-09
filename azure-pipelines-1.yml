@@ -20,7 +20,12 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: CmdLine@2
+  displayName: 'Adding package Microsoft.EntityFrameworkCore.Design'
+  inputs:
+   script: 'dotnet add package Microsoft.EntityFrameworkCore.Design'
+
+- task: CmdLine@2
   displayName: 'Installing EF Core CLI'
   inputs:
-   script: 'dotnet tool install -- global dotnet-ef'
+   script: 'dotnet tool install --global dotnet-ef'
 
