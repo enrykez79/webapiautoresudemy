@@ -52,8 +52,8 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --runtime win-x64 contained'
+    projects: '$(proyecto)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Output --runtime win-x64 contained'
     zipAfterPublish: false
     modifyOutputPath: false
 
