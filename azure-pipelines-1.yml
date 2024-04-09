@@ -48,11 +48,11 @@ steps:
 
 # Publish projects to specified folder.
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish'
+  displayName: 'Publishing App...'
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: $(proyecto)
+    projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --runtime win-x64 contained'
     zipAfterPublish: false
     modifyOutputPath: false
